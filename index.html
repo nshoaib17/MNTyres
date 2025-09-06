@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MN Tyres Lite</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./app.js?v=19"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="container header-inner">
+        <h1>MN Tyres Lite</h1>
+        <nav class="nav">
+          <button id="nav-settings" class="nav-btn">
+            <span class="nav-icon">⚙️</span>
+            Settings
+          </button>
+          <button id="nav-home" class="nav-btn">
+            Home
+          </button>
+          <button id="nav-stock" class="nav-btn active">
+            Stock
+          </button>
+          <button id="nav-sales" class="nav-btn">
+            Sales
+          </button>
+          <button id="nav-reports" class="nav-btn">
+            Reports
+          </button>
+          <button id="nav-calendar" class="nav-btn">
+            Calendar
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Home: Three features -->
+      <section id="view-home" class="view active">
+        <h2>Choose a feature</h2>
+        <div class="card-grid">
+          <article class="card clickable" data-view="stock">
+            <h3>Stock</h3>
+            <p>Add and view tyre stock: size, brand, quantity, and net cost.</p>
+            <div class="card-cta">Open Stock →</div>
+          </article>
+
+          <article class="card clickable" data-view="sales">
+            <h3>Sales</h3>
+            <p>Create sales, view records, and generate invoices.</p>
+            <div class="card-cta">Open Sales →</div>
+          </article>
+
+          <article class="card clickable" data-view="reports">
+            <h3>Reports</h3>
+            <p>View daily profit and turnover from tyre sales.</p>
+            <div class="card-cta">Open Reports →</div>
+          </article>
+
+          <article class="card clickable" data-view="calendar">
+            <h3>Calendar</h3>
+            <p>Manage appointments and bookings.</p>
+            <div class="card-cta">Open Calendar →</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Stock feature -->
+      <section id="view-stock" class="view">
+        <div class="section-header">
+          <h2>Stock Management</h2>
+          <div class="actions">
+            <button class="btn btn-ghost" data-view="home">← Back to Home</button>
+          </div>
+        </div>
+
+        <div class="stock-search">
+          <div class="search-input-group">
+            <label for="stock-size-search">Search by Size:</label>
+            <input 
+              type="text" 
+              id="stock-size-search" 
+              placeholder="Enter tyre size"
+              class="search-input"
+            />
+          </div>
+        </div>
+
+        <form id="stock-form" class="form" autocomplete="off">
+          <div class="form-row">
+            <label for="tyre-width">Width</label>
+            <select id="tyre-width" name="width" required>
+              <option value="">Select width...</option>
+              <option value="125">125</option>
+              <option value="135">135</option>
+              <option value="145">145</option>
+              <option value="155">155</option>
+              <option value="165">165</option>
+              <option value="175">175</option>
+              <option value="185">185</option>
+              <option value="195">195</option>
+              <option value="205">205</option>
+              <option value="215">215</option>
+              <option value="225">225</option>
+              <option value="235">235</option>
+              <option value="245">245</option>
+              <option value="255">255</option>
+              <option value="265">265</option>
+              <option value="275">275</option>
+              <option value="285">285</option>
+              <option value="295">295</option>
+              <option value="305">305</option>
+              <option value="315">315</option>
+              <option value="325">325</option>
+              <option value="335">335</option>
+              <option value="345">345</option>
+              <option value="355">355</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-aspect-ratio">Aspect Ratio</label>
+            <select id="tyre-aspect-ratio" name="aspectRatio" required>
+              <option value="">Select aspect ratio...</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+              <option value="45">45</option>
+              <option value="50">50</option>
+              <option value="55">55</option>
+              <option value="60">60</option>
+              <option value="65">65</option>
+              <option value="70">70</option>
+              <option value="75">75</option>
+              <option value="80">80</option>
+              <option value="82">82</option>
+              <option value="85">85</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-construction">Construction</label>
+            <select id="tyre-construction" name="construction" required>
+              <option value="">Select construction...</option>
+              <option value="R">R</option>
+              <option value="ZR">ZR</option>
+              <option value="B">B</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-rim-size">Rim Size</label>
+            <select id="tyre-rim-size" name="rimSize" required>
+              <option value="">Select rim size...</option>
+              <option value="10">10</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-load-index">Load Index (Optional)</label>
+            <input id="tyre-load-index" name="loadIndex" type="text" placeholder="e.g. 95V" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-brand">Brand</label>
+            <div class="brand-input-group">
+              <select id="tyre-brand" name="brand" required>
+                <option value="">Select a brand...</option>
+              </select>
+              <button type="button" id="add-brand-btn" class="btn btn-success btn-icon" title="Add new brand">
+                <span>+</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-qty">Quantity</label>
+            <input id="tyre-qty" name="quantity" type="number" min="1" step="1" placeholder="e.g. 4" autocomplete="off" required />
+          </div>
+
+          <div class="form-row">
+            <label for="tyre-net">Net price</label>
+            <input id="tyre-net" name="net" type="number" min="0" step="0.01" placeholder="e.g. 20.00" autocomplete="off"/>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add to Stock</button>
+            <button type="reset" class="btn btn-ghost">Clear</button>
+          </div>
+        </form>
+
+        <!-- Add Brand Modal -->
+        <div id="add-brand-modal" class="modal" style="display: none;">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Add New Brand</h3>
+              <button type="button" class="modal-close" id="close-brand-modal">&times;</button>
+            </div>
+            <form id="add-brand-form" class="form" autocomplete="off">
+              <div class="form-row">
+                <label for="new-brand-name">Brand Name</label>
+                <input id="new-brand-name" name="brandName" type="text" placeholder="e.g. Michelin" autocomplete="off" required />
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Add Brand</button>
+                <button type="button" class="btn btn-ghost" id="cancel-add-brand">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="table" id="stock-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Brand</th>
+                <th>Quantity</th>
+                <th>Net</th>
+                <th>Suggested Fitting Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Rows injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Sales feature -->
+      <section id="view-sales" class="view">
+        <div class="section-header">
+          <h2>Sales</h2>
+          <div class="actions">
+            <button class="btn btn-ghost" data-view="home">← Back to Home</button>
+          </div>
+        </div>
+
+        <div class="sales-options">
+          <div class="option-card clickable" data-sales-action="create">
+            <h3>Create a Sale</h3>
+            <p>Record a new tyre sale and generate invoice</p>
+            <div class="card-cta">Create Sale →</div>
+          </div>
+
+          <div class="option-card clickable" data-sales-action="service">
+            <h3>Service</h3>
+            <p>Record services like Puncture, MOT, and Tracking</p>
+            <div class="card-cta">Create Service →</div>
+          </div>
+
+          <div class="option-card clickable" data-sales-action="records">
+            <h3>Sales Records</h3>
+            <p>View all sales history and manage orders</p>
+            <div class="card-cta">View Records →</div>
+          </div>
+        </div>
+
+        <!-- Create Sale Form -->
+        <div id="create-sale-view" class="sales-view" style="display: none;">
+          <div class="section-header">
+            <h3>Create New Sale</h3>
+            <button class="btn btn-ghost" data-sales-action="back">← Back to Sales</button>
+          </div>
+
+          <form id="sale-form" class="form" autocomplete="off">
+            <div class="form-row">
+              <label for="sale-size">Tyre Size</label>
+              <input id="sale-size" name="size" type="text" placeholder="Start typing size..." autocomplete="off" required />
+              <div id="size-suggestions" class="suggestions"></div>
+            </div>
+
+            <div class="form-row">
+              <label for="sale-brand">Brand</label>
+              <select id="sale-brand" name="brand" required>
+                <option value="">Select a brand...</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="sale-quantity">Quantity</label>
+              <input id="sale-quantity" name="quantity" type="number" min="1" step="1" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <label for="sale-fitting-price">Fitting Price per Tyre</label>
+              <input id="sale-fitting-price" name="fittingPrice" type="number" min="0" step="0.01" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <label for="sale-customer-name">Customer Name</label>
+              <input id="sale-customer-name" name="customerName" type="text" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <label for="sale-customer-phone">Customer Phone (Optional)</label>
+              <input id="sale-customer-phone" name="customerPhone" type="tel" autocomplete="off" />
+            </div>
+
+            <div class="form-row">
+              <label for="sale-payment-method">Payment Method</label>
+              <select id="sale-payment-method" name="paymentMethod" required>
+                <option value="">Select payment method...</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="sale-person">Sales Person</label>
+              <div class="input-with-button">
+                <select id="sale-person" name="salesPerson" required>
+                  <option value="">Select sales person...</option>
+                </select>
+                <button type="button" id="add-sales-person-btn" class="btn btn-ghost">+</button>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Create Sale</button>
+              <button type="reset" class="btn btn-ghost">Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Create Service Form -->
+        <div id="create-service-view" class="sales-view" style="display: none;">
+          <div class="section-header">
+            <h3>Create New Service</h3>
+            <button class="btn btn-ghost" data-sales-action="back">← Back to Sales</button>
+          </div>
+
+          <form id="service-form" class="form" autocomplete="off">
+            <div class="form-row">
+              <label for="service-type">Service</label>
+              <select id="service-type" name="serviceType" required>
+                <option value="">Select service...</option>
+                <option value="Puncture">Puncture</option>
+                <option value="MOT">MOT</option>
+                <option value="Tracking">Tracking</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="service-price">Price</label>
+              <input id="service-price" name="price" type="number" step="0.01" min="0" placeholder="Enter service price" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <label for="service-customer-name">Customer Name</label>
+              <input id="service-customer-name" name="customerName" type="text" placeholder="Enter customer name" autocomplete="off" required />
+            </div>
+
+            <div class="form-row">
+              <label for="service-customer-phone">Customer Phone (Optional)</label>
+              <input id="service-customer-phone" name="customerPhone" type="tel" autocomplete="off" />
+            </div>
+
+            <div class="form-row">
+              <label for="service-payment-method">Payment Method</label>
+              <select id="service-payment-method" name="paymentMethod" required>
+                <option value="">Select payment method...</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="service-sales-person">Sales Person</label>
+              <div class="input-with-button">
+                <select id="service-sales-person" name="salesPerson" required>
+                  <option value="">Select sales person...</option>
+                </select>
+                <button type="button" id="add-service-sales-person-btn" class="btn btn-ghost">+</button>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Create Service</button>
+              <button type="reset" class="btn btn-ghost">Clear</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Sales Records -->
+        <div id="sales-records-view" class="sales-view" style="display: none;">
+          <div class="section-header">
+            <h3>Sales Records</h3>
+            <button class="btn btn-ghost" data-sales-action="back">← Back to Sales</button>
+          </div>
+
+          <div class="sales-filters">
+            <div class="filter-row">
+              <label for="date-filter">Filter by:</label>
+              <select id="date-filter" class="filter-select">
+                <option value="all">All Sales</option>
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="this-week">This Week</option>
+                <option value="this-month">This Month</option>
+                <option value="custom">Custom Date Range</option>
+              </select>
+            </div>
+            
+            <div id="custom-date-range" class="custom-date-range" style="display: none;">
+              <div class="date-inputs">
+                <div class="date-input-group">
+                  <label for="start-date">From:</label>
+                  <input type="date" id="start-date" />
+                </div>
+                <div class="date-input-group">
+                  <label for="end-date">To:</label>
+                  <input type="date" id="end-date" />
+                </div>
+                <button id="apply-date-range" class="btn btn-primary">Apply Filter</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sales-search-filters">
+            <div class="search-row">
+              <div class="search-input-group">
+                <label for="search-customer">Customer Name:</label>
+                <input type="text" id="search-customer" placeholder="Search by customer name..." autocomplete="off" />
+              </div>
+              <div class="search-input-group">
+                <label for="search-size">Size/Service:</label>
+                <input type="text" id="search-size" placeholder="Search by size or service..." autocomplete="off" />
+              </div>
+              <div class="search-input-group">
+                <label for="search-brand">Brand:</label>
+                <input type="text" id="search-brand" placeholder="Search by brand..." autocomplete="off" />
+              </div>
+              <div class="search-input-group">
+                <label for="search-payment">Payment Type:</label>
+                <select id="search-payment">
+                  <option value="">All Payment Types</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Card">Card</option>
+                </select>
+              </div>
+              <div class="search-input-group">
+                <label for="search-sales-person">Sales Person:</label>
+                <input type="text" id="search-sales-person" placeholder="Search by sales person..." autocomplete="off" />
+              </div>
+              <button id="clear-search-filters" class="btn btn-ghost">Clear Filters</button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="table" id="sales-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Size/Service</th>
+                  <th>Brand/Type</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                  <th>Payment</th>
+                  <th>Sales Person</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Rows injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section id="view-settings" class="view">
+        <div class="section-header">
+          <h2>Business Settings</h2>
+          <div class="actions">
+            <button class="btn btn-ghost" data-view="home">← Back to Home</button>
+          </div>
+        </div>
+
+        <form id="settings-form" class="form settings-form" autocomplete="off">
+          <div class="form-row">
+            <label for="business-logo">Business Logo</label>
+            <input id="business-logo" name="logo" type="file" accept="image/*" />
+            <div id="logo-preview" class="logo-preview"></div>
+          </div>
+
+          <div class="form-row">
+            <label for="business-name">Business Name</label>
+            <input id="business-name" name="businessName" type="text" placeholder="e.g. ABC Tyres" autocomplete="off" required />
+          </div>
+
+          <div class="form-row">
+            <label for="business-address">Business Address</label>
+            <textarea id="business-address" name="businessAddress" rows="3" placeholder="Enter full business address" required></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="business-phone">Contact Number</label>
+            <input id="business-phone" name="businessPhone" type="tel" placeholder="e.g. 01234 567890" autocomplete="off" required />
+          </div>
+
+          <div class="form-row">
+            <label for="company-reg">Company Registration Number</label>
+            <input id="company-reg" name="companyReg" type="text" placeholder="e.g. 12345678" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <label for="vat-reg">VAT Registration Number</label>
+            <input id="vat-reg" name="vatReg" type="text" placeholder="e.g. GB123456789" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <label for="business-email">Email Address</label>
+            <input id="business-email" name="businessEmail" type="email" placeholder="e.g. info@abctyres.com" autocomplete="off" required />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Save Settings</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Reports -->
+      <section id="view-reports" class="view">
+        <div class="section-header">
+          <h2>Reports</h2>
+          <div class="actions">
+            <button class="btn btn-ghost" data-view="home">← Back to Home</button>
+          </div>
+        </div>
+
+        <div class="reports-summary">
+          <div class="summary-header">
+            <h3 id="reports-period-title">TODAY</h3>
+            <button id="refresh-reports" class="btn btn-ghost btn-icon" title="Refresh">
+              <span>↻</span>
+            </button>
+          </div>
+          
+          <div class="reports-filters">
+            <div class="filter-row">
+              <select id="reports-date-filter" class="filter-select">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="this-week">This Week</option>
+                <option value="last-month">Last Month</option>
+                <option value="custom">Custom Date</option>
+                <option value="date-range">Date Range</option>
+              </select>
+              
+              <div id="reports-custom-date" class="custom-date-inputs" style="display: none;">
+                <input type="date" id="reports-single-date" class="date-input" />
+                <button id="apply-single-date" class="btn btn-primary">Apply</button>
+              </div>
+              
+              <div id="reports-date-range" class="date-range-inputs" style="display: none;">
+                <input type="date" id="reports-start-date" class="date-input" />
+                <span>to</span>
+                <input type="date" id="reports-end-date" class="date-input" />
+                <button id="apply-reports-date-range" class="btn btn-primary">Apply</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="summary-cards">
+            <div class="summary-card profit-card">
+              <div class="card-label">PROFIT</div>
+              <div class="card-value" id="profit-value">£0</div>
+            </div>
+            
+            <div class="summary-card sales-count-card">
+              <div class="card-label">SALES COUNT</div>
+              <div class="card-value" id="sales-count-value">0</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Add Sales Person Modal -->
+    <div id="add-sales-person-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Sales Person</h3>
+          <button id="close-sales-person-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="add-sales-person-form" autocomplete="off">
+          <div class="form-row">
+            <label for="new-sales-person-name">Sales Person Name</label>
+            <input id="new-sales-person-name" type="text" placeholder="Enter sales person name" autocomplete="off" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add Sales Person</button>
+            <button type="button" id="cancel-add-sales-person" class="btn btn-ghost">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Stock Adjustment Reason Modal -->
+    <div id="stock-adjustment-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Stock Adjustment</h3>
+          <button id="close-stock-adjustment-modal" class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Please select a reason for this stock adjustment:</p>
+          <div class="adjustment-reasons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
+            <button class="btn btn-ghost adjustment-reason" data-reason="Misc Adjustment Loss">Misc Adjustment Loss</button>
+            <button class="btn btn-ghost adjustment-reason" data-reason="Damaged">Damaged</button>
+            <button class="btn btn-ghost adjustment-reason" data-reason="Expired">Expired</button>
+            <button class="btn btn-ghost adjustment-reason" data-reason="Crossover">Crossover</button>
+            <button class="btn btn-ghost adjustment-reason" data-reason="Internal Use">Internal Use</button>
+            <button class="btn btn-ghost adjustment-reason" data-reason="Lost/Found">Lost/Found</button>
+          </div>
+          <div class="form-actions">
+            <button id="cancel-stock-adjustment" class="btn btn-ghost">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stock Audit Modal -->
+    <div id="stock-audit-modal" class="modal" style="display: none;">
+      <div class="modal-content" style="max-width: 1200px; width: 95vw;">
+        <div class="modal-header">
+          <h3>Stock Audit</h3>
+          <button id="close-stock-audit-modal" class="close-btn">&times;</button>
+        </div>
+        
+        <!-- Search Filters -->
+        <div class="audit-filters" style="margin-bottom: 20px; padding: 15px; background: var(--surface-2); border-radius: var(--radius);">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div>
+              <label for="audit-sale-date-from" style="display: block; margin-bottom: 5px; font-weight: 500;">Sale Date From:</label>
+              <input type="date" id="audit-sale-date-from" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text);" />
+            </div>
+            <div>
+              <label for="audit-sale-date-to" style="display: block; margin-bottom: 5px; font-weight: 500;">Sale Date To:</label>
+              <input type="date" id="audit-sale-date-to" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text);" />
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div>
+              <label for="audit-purchase-date-from" style="display: block; margin-bottom: 5px; font-weight: 500;">Purchase Date From:</label>
+              <input type="date" id="audit-purchase-date-from" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text);" />
+            </div>
+            <div>
+              <label for="audit-purchase-date-to" style="display: block; margin-bottom: 5px; font-weight: 500;">Purchase Date To:</label>
+              <input type="date" id="audit-purchase-date-to" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text);" />
+            </div>
+          </div>
+          <div style="text-align: right;">
+            <button id="clear-audit-filters" class="btn btn-ghost" style="margin-right: 10px;">Clear Filters</button>
+            <button id="apply-audit-filters" class="btn btn-primary">Apply Filters</button>
+          </div>
+        </div>
+        
+        <div id="stock-audit-content">
+          <!-- Content will be populated by JavaScript -->
+        </div>
+        <div class="modal-footer" style="margin-top: 20px; text-align: right;">
+          <button id="back-to-stock" class="btn btn-ghost">← Back to Stock Management</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar feature -->
+    <section id="view-calendar" class="view">
+      <div class="section-header">
+        <h2>Calendar Management</h2>
+        <div class="actions">
+          <button class="btn btn-ghost" data-view="home">← Back to Home</button>
+        </div>
+      </div>
+
+      <div class="calendar-container">
+        <div class="calendar-navigation">
+          <button id="prev-week" class="btn btn-ghost">←</button>
+          <h3 id="current-week"></h3>
+          <button id="next-week" class="btn btn-ghost">→</button>
+        </div>
+        
+        <div class="weekly-calendar">
+          <div class="time-column">
+            <div class="time-header">GMT+01</div>
+            <div class="time-slots">
+              <div class="time-slot">08:00</div>
+              <div class="time-slot">09:00</div>
+              <div class="time-slot">10:00</div>
+              <div class="time-slot">11:00</div>
+              <div class="time-slot">12:00</div>
+              <div class="time-slot">13:00</div>
+              <div class="time-slot">14:00</div>
+              <div class="time-slot">15:00</div>
+              <div class="time-slot">16:00</div>
+              <div class="time-slot">17:00</div>
+              <div class="time-slot">18:00</div>
+              <div class="time-slot">19:00</div>
+            </div>
+          </div>
+          
+          <div class="week-grid">
+            <div class="day-column" data-day="0">
+              <div class="day-header">
+                <div class="day-name">MON</div>
+                <div class="day-number" id="mon-date">1</div>
+              </div>
+              <div class="day-slots" id="mon-slots"></div>
+            </div>
+            <div class="day-column" data-day="1">
+              <div class="day-header">
+                <div class="day-name">TUE</div>
+                <div class="day-number" id="tue-date">2</div>
+              </div>
+              <div class="day-slots" id="tue-slots"></div>
+            </div>
+            <div class="day-column" data-day="2">
+              <div class="day-header">
+                <div class="day-name">WED</div>
+                <div class="day-number" id="wed-date">3</div>
+              </div>
+              <div class="day-slots" id="wed-slots"></div>
+            </div>
+            <div class="day-column" data-day="3">
+              <div class="day-header">
+                <div class="day-name">THU</div>
+                <div class="day-number" id="thu-date">4</div>
+              </div>
+              <div class="day-slots" id="thu-slots"></div>
+            </div>
+            <div class="day-column" data-day="4">
+              <div class="day-header">
+                <div class="day-name">FRI</div>
+                <div class="day-number" id="fri-date">5</div>
+              </div>
+              <div class="day-slots" id="fri-slots"></div>
+            </div>
+            <div class="day-column" data-day="5">
+              <div class="day-header">
+                <div class="day-name">SAT</div>
+                <div class="day-number" id="sat-date">6</div>
+              </div>
+              <div class="day-slots" id="sat-slots"></div>
+            </div>
+            <div class="day-column" data-day="6">
+              <div class="day-header">
+                <div class="day-name">SUN</div>
+                <div class="day-number" id="sun-date">7</div>
+              </div>
+              <div class="day-slots" id="sun-slots"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="calendar-actions">
+          <button id="add-appointment-btn" class="btn btn-primary">+ Add Appointment</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add Appointment Modal -->
+    <div id="add-appointment-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add New Appointment</h3>
+          <button id="close-appointment-modal" class="close-btn">&times;</button>
+        </div>
+        <form id="add-appointment-form" autocomplete="off">
+          <div class="form-row">
+            <label for="appointment-date">Date</label>
+            <input id="appointment-date" name="date" type="date" required />
+          </div>
+          <div class="form-row">
+            <label for="appointment-time">Time</label>
+            <input id="appointment-time" name="time" type="time" required />
+          </div>
+          <div class="form-row">
+            <label for="appointment-customer">Customer Name</label>
+            <input id="appointment-customer" name="customerName" type="text" autocomplete="off" required />
+          </div>
+          <div class="form-row">
+            <label for="appointment-phone">Phone Number</label>
+            <input id="appointment-phone" name="phone" type="tel" autocomplete="off" />
+          </div>
+          <div class="form-row">
+            <label for="appointment-service">Service Type</label>
+            <select id="appointment-service" name="serviceType" required>
+              <option value="">Select service...</option>
+              <option value="Tyre Fitting">Tyre Fitting</option>
+              <option value="Tyre Change">Tyre Change</option>
+              <option value="Wheel Alignment">Wheel Alignment</option>
+              <option value="Brake Service">Brake Service</option>
+              <option value="MOT">MOT</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="appointment-notes">Notes</label>
+            <textarea id="appointment-notes" name="notes" placeholder="Additional notes..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Add Appointment</button>
+            <button type="button" id="cancel-add-appointment" class="btn btn-ghost">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+
+    <footer class="app-footer">
+      <div class="container">
+        <small>MN Tyres</small>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
