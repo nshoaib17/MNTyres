@@ -15,10 +15,22 @@
 
   let currentSalesView = null;
 
+  function logout() {
+    localStorage.removeItem('MNTyres.loginStatus');
+    // Redirect to login page
+    window.location.href = 'login.html';
+  }
+
   // View switching
   function switchView(viewId) {
     for (const section of document.querySelectorAll('.view')) {
       section.classList.toggle('active', section.id === viewId);
+    }
+    
+    // Show/hide logout button based on active view
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.style.display = viewId === VIEW_SETTINGS_ID ? 'inline-block' : 'none';
     }
     
     // Reset sales view when switching away
@@ -1546,6 +1558,13 @@
       generateCalendar(currentCalendarDate.getFullYear(), currentCalendarDate.getMonth());
     });
     
+    // Logout button
+    document.getElementById('logout-btn')?.addEventListener('click', () => {
+      if (confirm('Are you sure you want to logout?')) {
+        logout();
+      }
+    });
+    
     // Sales action listeners and view navigation are handled by event delegation
     document.body.addEventListener('click', (e) => {
       const target = e.target;
@@ -2743,6 +2762,18 @@
 
   // Initialize the app
   function init() {
+    // Double-check authentication (backup to the immediate check in HTML)
+    if (localStorage.getItem('MNTyres.loginStatus') !== 'true') {
+      // User is not logged in, redirect to login page
+      window.location.href = 'login.html';
+      return;
+    }
+    
+    // User is logged in, initialize main app
+    initializeMainApp();
+  }
+
+  function initializeMainApp() {
     wireNavigation();
     
     // Form event listeners
